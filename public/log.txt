@@ -1,0 +1,87 @@
+request body = <TemplateSMS>
+                    <to>18073493729</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>6666</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=0777CD56726CD0BC613EFA43AECE7DAB
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>000000</statusCode>
+    <TemplateSMS>
+        <smsMessageSid>b2c94ef48e94450da7fd785ff7709e7e</smsMessageSid>
+        <dateCreated>20181230164339</dateCreated>
+    </TemplateSMS>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>13543732192</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>5314</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=F38C496F3AA7EE49CB0F865DE88C68BE
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>112310</statusCode>
+    <statusMsg>【短信】应用未上线，模板短信接收号码外呼受限</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>13543732192</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>2811</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=0C4494676AE9A5DFDEB79AD5080518D2
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>112310</statusCode>
+    <statusMsg>【短信】应用未上线，模板短信接收号码外呼受限</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>13543732192</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>2557</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=8FF73AA2A795522BEBC6BFDAAE75A43C
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>112310</statusCode>
+    <statusMsg>【短信】应用未上线，模板短信接收号码外呼受限</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>18073493729</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>4170</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=39753E2C377B033B0BF2880C5EB3544C
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>000000</statusCode>
+    <TemplateSMS>
+        <smsMessageSid>7ac3a9755b3c43deb54a830bf38520d5</smsMessageSid>
+        <dateCreated>20181230230731</dateCreated>
+    </TemplateSMS>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>18073493729</to> 
+                    <appId>8a216da867e881cb0167fd7ae9f60d28</appId>
+                    <templateId>1</templateId>
+                    <datas><data>9509</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da867e881cb0167fd7ae9940d21/SMS/TemplateSMS?sig=F4B21533B6CE90FC1EB9B6BE42868B93
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>000000</statusCode>
+    <TemplateSMS>
+        <smsMessageSid>e4eef7cfd7c049c9b0518f68648548bc</smsMessageSid>
+        <dateCreated>20190102211004</dateCreated>
+    </TemplateSMS>
+</Response>
+

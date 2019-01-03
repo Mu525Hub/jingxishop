@@ -1,0 +1,19 @@
+<!-- 导航条左侧开始 -->
+{foreach name="children[0]" item="one"}
+<div class="cat item1">
+	<h3><a href="{:url('/home/category/index',['cat_id'=>$one])}">{$cats[$one]['cat_name']}</a> <b></b></h3>
+	<div class="cat_detail">
+		{foreach name="children[$one]" item="two"}
+		<dl class="dl_1st">
+			<dt><a href="{:url('/home/category/index',['cat_id'=>$two])}">{$cats[$two]['cat_name']}</a></dt>
+			<dd>
+				{foreach name="children[$two]" item="three"}
+				<a href="{:url('/home/category/index',['cat_id'=>$three])}">{$cats[$three]['cat_name']}</a>
+				{/foreach}
+			</dd>
+		</dl>
+		{/foreach}
+	</div>
+</div>
+{/foreach}
+<!-- 导航条左侧结束 -->

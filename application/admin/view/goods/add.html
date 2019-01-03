@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="{:config('static_admin')}/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="{:config('static_admin')}/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.config.js?v=2"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.all.min.js"></script>
+    <style>
+        .active{
+            border-bottom: solid 3px #66c9f3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">表单</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle">
+            <span class="active">基本信息</span>
+            <span>商品属性</span>
+            <span>商品相册</span>
+            <span>商品描述</span>
+
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            <ul class="forminfo">
+                <li>
+                    <label>商品名称</label>
+                    <input name="goods_name" placeholder="请输入商品名称" type="text" class="dfinput" /><i></i>
+                </li>
+                <li>
+                    <label>商品价格</label>
+                    <input name="goods_price" placeholder="请输入商品价格" type="text" class="dfinput" /><i></i>
+                </li>
+                <li>
+                    <label>商品库存</label>
+                    <input name="goods_number" placeholder="请输入商品库存" type="text" class="dfinput" />
+                </li>
+                <li>
+                    <label>商品分类</label>
+                    <select name="cat_id" class="dfinput">
+                        <option value="">请选择商品分类</option>
+                        {foreach name="cats" item="v"}
+                        <option value="{$v['cat_id']}">{:str_repeat('-- ',$v['level'])}{$v['cat_name']}</option>
+                        {/foreach}
+                    </select>
+                </li>
+                <li>
+                    <label>回收站</label>
+                    <input type="radio" name="is_delete" value="0" checked="checked" />否　
+                    <input type="radio" name="is_delete" value="1" />是
+                </li>
+                <li>
+                    <label>上架</label>
+                    <input type="radio" name="is_sale" value="0" />否　
+                    <input type="radio" name="is_sale" value="1" checked="checked" />是
+                </li>
+                <li>
+                    <label>新品</label>
+                    <input type="radio" name="is_new" value="0" />否　
+                    <input type="radio" name="is_new" value="1" checked="checked" />是
+                </li>
+                <li>
+                    <label>热卖</label>
+                    <input type="radio" name="is_hot" value="0" />否　
+                    <input type="radio" name="is_hot" value="1" checked="checked" />是
+                </li>
+                <li>
+                    <label>推荐</label>
+                    <input type="radio" name="is_best" value="0" />否　
+                    <input type="radio" name="is_best" value="1" checked="checked" />是
+                </li>
+            </ul>
+            <ul class="forminfo">
+                <li>
+                    <label>商品类型</label>
+                    <select name="type_id" class="dfinput">
+                        <option value="0">请选择类型</option>
+                        {foreach name="types" item="v"}
+                        <option value="{$v['type_id']}">{$v['type_name']}</option>
+                        {/foreach}
+                    </select>
+                    <li id="attrContainer"></li>
+                </li>
+            </ul>
+            <ul class="forminfo">
+                <li>
+                    <a href="javascript:;" onclick="cloneImg(this)">[+]</a>　<input type="file" name="img[]">
+                </li>
+            </ul>
+            <ul class="forminfo">
+                <li>
+                    <label>商品描述</label>
+                    <textarea name="goods_desc" id="goods_desc"></textarea>
+                </li>
+            </ul>
+			<li>
+                    <label>&nbsp;</label>
+                    <input name="" id="btnSubmit" type="submit" class="btn" value="确认保存" />
+             </li>
+        </form>
+    </div>
+</body>
+<script>
+    //商品属性
+    $('select[name="type_id"]').change(function(){
+        var type_id = $(this).val();
+        $.get('{:url("/admin/Goods/getTypeAttr")}',{'type_id':type_id},function(res){
+            // console.log(res);
+            var html = "";
+            html += '<ul>';
+                for(i=0;i<res.length;i++){
+                    html += '<li>';
+                    if (res[i].attr_type == 1) {
+                        html += '<a href="javascript:;" onclick="cloneAttr(this)">[+]</a>';
+                    }
+                    html += res[i].attr_name + ': 　　　';
+                    //如果是单选属性name后面需要拼接[]，因为单选属性有多个,而唯一属性只有一个,不需要加[]
+                    var hasManyValue = res[i].attr_type == 1 ? '[]' : '';
+                    if (res[i].attr_input_type == 0) {
+                        //手工输入
+                        html += '<input type="text" class="dfinput" name="attrValue['+res[i].attr_id+']'+hasManyValue+'">';
+                    } else {
+                        //列表选择
+                        html += '<select class="dfinput" name="attrValue['+res[i].attr_id+']'+hasManyValue+'">';
+                        var attr_values_arr = res[i].attr_values.split('|');
+                        html += '<option value="">请选择</option>';
+                        for(var j=0;j<attr_values_arr.length;j++){
+                            html += '<option value="'+attr_values_arr[j]+'" >'+attr_values_arr[j]+'</option>';
+                        }
+                        html += '</select>';
+                    }
+                    if (res[i].attr_type == 1) {
+                        html += '属性价格　<input type="text" class="dfinput" name="attrPrice['+res[i].attr_id+'][]">';
+                    }
+                    html += '</li>';
+                }
+            html += '</ul>';
+            $('#attrContainer').html(html);
+        },'json');
+    });
+
+    function cloneAttr(ele){
+        var html = $(ele).html();
+        if (html == '[+]') {
+            var newAttr = $(ele).parent().clone();
+            newAttr.children('a').html('[-]');
+            newAttr.children('input').val('');
+            $(ele).parent().after(newAttr);
+        } else {
+            $(ele).parent().remove();
+        }
+    }
+
+    //初始化富文本编辑器
+    var ue = UE.getEditor('goods_desc');
+
+    function cloneImg(ele){
+        var html = $(ele).html();
+        if (html == '[+]') {
+            var newLi = $(ele).parent().clone();
+            newLi.children('a').html('[-]');
+            newLi.children('input').val('');
+            $(ele).parent().after(newLi);
+        } else {
+            $(ele).parent().remove();
+        }
+    }
+
+    $(".formtitle span").click(function(event){
+        $(this).addClass('active').siblings("span").removeClass('active') ;
+        var index = $(this).index();
+        $("ul.forminfo").eq(index).show().siblings(".forminfo").hide();
+    });
+     $(".formtitle span").eq(0).click();
+</script>
+
+</html>

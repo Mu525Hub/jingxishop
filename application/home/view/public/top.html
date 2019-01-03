@@ -1,0 +1,11 @@
+<!-- 导航条头部开始 -->
+<div class="navitems fl">
+	<ul class="fl">
+		<li class="current"><a href="/">首页</a></li>
+		{foreach name="navCat" item="v"}
+			<li><a href="{:url('/home/category/index',['cat_id'=>$v['cat_id']])}">{$v['cat_name']}</a></li>
+		{/foreach}
+	</ul>
+	<div class="right_corner fl"></div>
+</div>
+<!-- 导航条头部结束 -->

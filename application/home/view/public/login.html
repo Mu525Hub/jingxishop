@@ -1,0 +1,15 @@
+<div class="topnav_right fr">
+	<ul>
+		<li>您好，欢迎{:session('username')}来到京西！
+			<?php if(session('member_id')) : ?>
+			[<a href="{:url('/home/login/logout')}">退出</a>]
+			<?php else: ?>
+			[<a href="{:url('/home/login/login')}">登录</a>] [<a href="{:url('/home/login/register')}">免费注册</a>]
+			<?php endif; ?>
+		</li>
+		<li class="line">|</li>
+		<li>我的订单</li>
+		<li class="line">|</li>
+		<li>客户服务</li>
+	</ul>
+</div>
